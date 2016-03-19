@@ -1,34 +1,29 @@
 " insertモードから抜ける
 inoremap <silent> jj <ESC>
 
-" 行頭・行末移動方向をキーの相対位置にあわせる
-nnoremap 0 $
-nnoremap 1 0
+" カラースキームをmolokaiに変更
+syntax on
+colorscheme molokai
 
-" 挿入モードでのカーソル移動
-inoremap <C-j> <Down>
-inoremap <C-k> <Up>
-inoremap <C-h> <Left>
-inoremap <C-l> <Right>
+" Tabのスペース数
+set tabstop=4
 
-" カーソル前の文字削除
-inoremap <silent> <C-h> <C-g>u<C-h>
-" カーソル後の文字削除
-inoremap <silent> <C-d> <Del>
-" カーソルから行頭まで削除
-inoremap <silent> <C-d>e <Esc>lc^
-" カーソルから行末まで削除
-inoremap <silent> <C-d>0 <Esc>lc$
-" カーソルから行頭までヤンク
-inoremap <silent> <C-y>e <Esc>ly0<Insert>
-" カーソルから行末までヤンク
-inoremap <silent> <C-y>0 <Esc>ly$<Insert>
+" 編集中のタイトル表示
+set title
 
-" 引用符, 括弧の設定
-inoremap { {}<Left>
-inoremap [ []<Left>
-inoremap ( ()<Left>
-inoremap " ""<Left>
-inoremap ' ''<Left>
-inoremap <> <><Left>
+" 行番号表示
+set number
+
+" 行番号トグル
+function Setnumber()
+  if &number
+    setlocal nonumber
+  else
+    setlocal number
+  endif
+endfunction
+nnoremap <silent> <C-n> :call Setnumber()<CR>
+
+" ペーストモードのトグル
+set pastetoggle=<F11>
 
